@@ -682,6 +682,12 @@ struct drm_gem_object {
 	uint32_t pending_read_domains;
 	uint32_t pending_write_domain;
 
+
+	/**
+     * driver_private - pvr needs this to attach some extra information
+	 */
+    void *driver_private;
+    
 	/**
 	 * dma_buf - dma buf associated with this GEM object
 	 *
