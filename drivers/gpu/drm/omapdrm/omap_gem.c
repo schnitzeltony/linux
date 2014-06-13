@@ -117,6 +117,15 @@ struct omap_gem_object {
 		uint32_t read_pending;
 		uint32_t read_complete;
 	} *sync;
+
+	/**
+	 * per-mapper private data..
+	 *
+	 * TODO maybe there can be a more flexible way to store per-mapper data..
+	 * for now I just keep it simple, and since this is only accessible
+	 * externally via omap_gem_priv()/omap_get_set_priv()
+	 */
+	void *priv[MAX_MAPPERS];
 };
 
 static int get_pages(struct drm_gem_object *obj, struct page ***pages);
