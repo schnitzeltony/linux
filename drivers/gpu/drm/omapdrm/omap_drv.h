@@ -232,6 +232,8 @@ int omap_gem_mmap(struct file *filp, struct vm_area_struct *vma);
 int omap_gem_mmap_obj(struct drm_gem_object *obj,
 		struct vm_area_struct *vma);
 int omap_gem_fault(struct vm_area_struct *vma, struct vm_fault *vmf);
+void omap_gem_vm_open(struct vm_area_struct *vma);
+void omap_gem_vm_close(struct vm_area_struct *vma);
 int omap_gem_op_start(struct drm_gem_object *obj, enum omap_gem_op op);
 int omap_gem_op_finish(struct drm_gem_object *obj, enum omap_gem_op op);
 int omap_gem_op_sync(struct drm_gem_object *obj, enum omap_gem_op op);
