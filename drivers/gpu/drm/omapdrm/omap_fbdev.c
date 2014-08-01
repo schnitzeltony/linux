@@ -172,9 +172,9 @@ static int omap_fbdev_create(struct drm_fb_helper *helper,
 		mode_cmd.pitches[0] = ALIGN(mode_cmd.pitches[0], PAGE_SIZE);
 	}
 
-	/* allocate backing bo */
+	/* allocate backing bo for double buffering */
 	gsize = (union omap_gem_size){
-		.bytes = PAGE_ALIGN(mode_cmd.pitches[0] * mode_cmd.height),
+		.bytes = PAGE_ALIGN(mode_cmd.pitches[0] * mode_cmd.height * 2),
 	};
 	DBG("allocating %d bytes for fb %d", gsize.bytes, dev->primary->index);
 	fbdev->bo = omap_gem_new(dev, gsize, OMAP_BO_SCANOUT | OMAP_BO_WC);
