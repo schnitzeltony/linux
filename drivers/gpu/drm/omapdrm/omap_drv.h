@@ -185,6 +185,7 @@ int omap_encoder_set_enabled(struct drm_encoder *encoder, bool enabled);
 int omap_encoder_update(struct drm_encoder *encoder,
 		struct omap_overlay_manager *mgr,
 		struct omap_video_timings *timings);
+int omap_encoder_wait_for_vsync(struct drm_encoder *encoder);
 
 struct drm_connector *omap_connector_init(struct drm_device *dev,
 		int connector_type, struct omap_dss_device *dssdev,

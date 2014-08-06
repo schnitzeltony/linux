@@ -162,6 +162,14 @@ int omap_encoder_update(struct drm_encoder *encoder,
 	return 0;
 }
 
+int omap_encoder_wait_for_vsync(struct drm_encoder *encoder)
+{
+	struct omap_encoder *omap_encoder = to_omap_encoder(encoder);
+	DBG("%s", omap_encoder->dssdev->src->manager->name);
+	return omap_encoder->dssdev->src->manager->wait_for_vsync(omap_encoder->dssdev->src->manager);
+}
+EXPORT_SYMBOL(omap_encoder_wait_for_vsync);
+
 /* initialize encoder */
 struct drm_encoder *omap_encoder_init(struct drm_device *dev,
 		struct omap_dss_device *dssdev)
