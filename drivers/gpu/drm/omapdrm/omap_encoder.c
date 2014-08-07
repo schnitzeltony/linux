@@ -165,8 +165,42 @@ int omap_encoder_update(struct drm_encoder *encoder,
 int omap_encoder_wait_for_vsync(struct drm_encoder *encoder)
 {
 	struct omap_encoder *omap_encoder = to_omap_encoder(encoder);
-	DBG("%s", omap_encoder->dssdev->src->manager->name);
-	return omap_encoder->dssdev->src->manager->wait_for_vsync(omap_encoder->dssdev->src->manager);
+	if (omap_encoder)
+	{
+		if (omap_encoder->dssdev)
+		{
+			if (omap_encoder->dssdev->manager)
+				pr_err("omap_encoder->dssdev->manager->name=%s\n", omap_encoder->dssdev->src->manager->name);
+			else
+				pr_err("omap_encoder->dssdev->manager = NULL!\n");
+			if (omap_encoder->dssdev->src)
+			{
+				if(omap_encoder->dssdev->src->manager)
+					pr_err("omap_encoder->dssdev->src->manager->name=%s\n", omap_encoder->dssdev->src->manager->name);
+				else
+					pr_err("omap_encoder->dssdev->src->manager = NULL!\n");
+			}
+			else
+				pr_err("omap_encoder->dssdev->src = NULL!\n");
+			if (omap_encoder->dssdev->dst)
+			{
+				if(omap_encoder->dssdev->dst->manager)
+					pr_err("omap_encoder->dssdev->dst->manager->name=%s\n", omap_encoder->dssdev->dst->manager->name);
+				else
+					pr_err("omap_encoder->dssdev->dst->manager = NULL!\n");
+			}
+			else
+				pr_err("omap_encoder->dssdev->dst = NULL!\n");
+		}
+		else
+			pr_err("omap_encoder->dssdev = NULL!\n");
+	}
+	else
+		pr_err("omap_encoder = NULL!\n");
+	pr_err("omap_encoder_wait_for_vsync done");
+	/*DBG("%s", omap_encoder->dssdev->src->manager->name);
+	return omap_encoder->dssdev->src->manager->wait_for_vsync(omap_encoder->dssdev->src->manager);*/
+	return 0;
 }
 EXPORT_SYMBOL(omap_encoder_wait_for_vsync);
 
