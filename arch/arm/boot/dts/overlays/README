@@ -215,6 +215,26 @@ Params: cs                      SPI bus Chip Select (default 1)
         www.kernel.org/doc/Documentation/devicetree/bindings/input/ads7846.txt
 
 
+Name:   akkordion-es9023-audio
+Info:   Configures the Digital Dreamtime Akkordion Music Player (with ESS Sabre
+        ES9023 DAC).
+Load:   dtoverlay=akkordion-es9023-audio,<param>
+Params: 384k                    Instructs the es9023 codec driver to support
+                                352k8 and 384k sample rates.
+        bclk_ratio_int_div      Use bclk_ratio=50 for 16/24bps and
+                                bclk_ratio=100 for 32bps media when sample
+                                rate is a multiple of 8kHz and less than
+                                192kHz. Which causes the selection of the 19M2
+                                OSC as the parent for the PCM clock with an
+                                integer divider, rather than PLLD with
+                                fractional divider and MASH noise shaping.
+        card_name               Override the default, "Akkordion", card name.
+        dai_name                Override the default, "Akkordion DAC",
+                                dai name.
+        dai_stream_name         Override the default, "Akkordion DAC HiFi",
+                                dai stream name.
+
+
 Name:   akkordion-iqdacplus
 Info:   Configures the Digital Dreamtime Akkordion Music Player (based on the
         OEM IQAudIO DAC+ or DAC Zero module).
@@ -351,6 +371,24 @@ Params: int_pin                 GPIO used for INT (default 25)
         speed                   SPI bus speed (default 12000000)
 
 
+Name:   es9023-audio
+Info:   Configures a generic board or HAT using ESS Sabre ES9023 DAC
+Load:   dtoverlay=es9023-audio,<param>
+Params: 384k                    Instructs the es9023 codec driver to support
+                                352k8 and 384k sample rates.
+        bclk_ratio_int_div      Use bclk_ratio=50 for 16/24bps and
+                                bclk_ratio=100 for 32bps media when sample
+                                rate is a multiple of 8kHz and less than
+                                192kHz. Which causes the selection of the 19M2
+                                OSC as the parent for the PCM clock with an
+                                integer divider, rather than PLLD with
+                                fractional divider and MASH noise shaping.
+        card_name               Override the default, "es9023", card name.
+        dai_name                Override the default, "ES9023 DAC" dai name.
+        dai_stream_name         Override the default, "ES9023 DAC HiFi",
+                                dai stream name.
+
+
 Name:   gpio-ir
 Info:   Use GPIO pin as rc-core style infrared receiver input. The rc-core-
         based gpio_ir_recv driver maps received keys directly to a
@@ -388,8 +426,9 @@ Params: <None>
 
 Name:   hifiberry-dac
 Info:   Configures the HifiBerry DAC audio card
-Load:   dtoverlay=hifiberry-dac
-Params: <None>
+Load:   dtoverlay=hifiberry-dac,<param>
+Params: 384k                    Instructs the pcm5102a codec driver to support
+                                352k8 and 384k sample rates.
 
 
 Name:   hifiberry-dacplus
@@ -411,6 +450,26 @@ Params: 24db_digital_gain       Allow gain to be applied via the PCM512x codec
                                 that does not result in clipping/distortion!)
         slave                   Force DAC+ Pro into slave mode, using Pi as
                                 master for bit clock and frame clock.
+
+
+Name:   hifiberry-dacpluslight-es9023-audio
+Info:   Configures the HiFiBerry DAC+ Light audio card
+Load:   dtoverlay=hifiberry-dacpluslight-es9023-audio,<param>
+Params: 384k                    Instructs the es9023 codec driver to support
+                                352k8 and 384k sample rates.
+        bclk_ratio_int_div      Use bclk_ratio=50 for 16/24bps and
+                                bclk_ratio=100 for 32bps media when sample
+                                rate is a multiple of 8kHz and less than
+                                192kHz. Which causes the selection of the 19M2
+                                OSC as the parent for the PCM clock with an
+                                integer divider, rather than PLLD with
+                                fractional divider and MASH noise shaping.
+        card_name               Override the default, "snd_rpi_hifiberry_dac",
+                                card name.
+        dai_name                Override the default, "HifiBerry DAC",
+                                dai name.
+        dai_stream_name         Override the default, "HifiBerry DAC HiFi",
+                                dai stream name.
 
 
 Name:   hifiberry-digi
@@ -461,6 +520,24 @@ Params: speed                   Display SPI bus speed
         resetgpio               GPIO used to reset controller
 
         ledgpio                 GPIO used to control backlight
+
+
+Name:   i-sabre-dac-es9023-audio
+Info:   Configures the Audiophonics I-Sabre DAC
+Load:   dtoverlay=i-sabre-dac-es9023-audio,<param>
+Params: 384k                    Instructs the es9023 codec driver to support
+                                352k8 and 384k sample rates.
+        bclk_ratio_int_div      Use bclk_ratio=50 for 16/24bps and
+                                bclk_ratio=100 for 32bps media when sample
+                                rate is a multiple of 8kHz and less than
+                                192kHz. Which causes the selection of the 19M2
+                                OSC as the parent for the PCM clock with an
+                                integer divider, rather than PLLD with
+                                fractional divider and MASH noise shaping.
+        card_name               Override the default, "ISabre", card name.
+        dai_name                Override the default, "ISabre DAC", dai name.
+        dai_stream_name         Override the default, "ISabre DAC HiFi",
+                                dai stream name.
 
 
 Name:   i2c-gpio
@@ -544,12 +621,6 @@ Params: sda1_pin                GPIO pin for SDA1 (2 or 44 - default 2)
 Name:   i2s-gpio28-31
 Info:   move I2S function block to GPIO 28 to 31
 Load:   dtoverlay=i2s-gpio28-31
-Params: <None>
-
-
-Name:   i2s-mmap
-Info:   Enables mmap support in the bcm2708-i2s driver
-Load:   dtoverlay=i2s-mmap
 Params: <None>
 
 
@@ -654,6 +725,25 @@ Params: gpio_out_pin            GPIO for output (default "17")
 
         debug                   "on" = enable additional debug messages
                                 (default "off")
+
+
+Name:   mamboberry-dacplus-es9023-audio
+Info:   Configures the Collybia Mamboberry HiFi DAC+
+Load:   dtoverlay=mamboberry-dacplus-es9023-audio,<param>
+Params: 384k                    Instructs the es9023 codec driver to support
+                                352k8 and 384k sample rates.
+        bclk_ratio_int_div      Use bclk_ratio=50 for 16/24bps and
+                                bclk_ratio=100 for 32bps media when sample
+                                rate is a multiple of 8kHz and less than
+                                192kHz. Which causes the selection of the 19M2
+                                OSC as the parent for the PCM clock with an
+                                integer divider, rather than PLLD with
+                                fractional divider and MASH noise shaping.
+        card_name               Override the default, "Mamboberry", card name.
+        dai_name                Override the default, "Mamboberry DAC+",
+                                dai name.
+        dai_stream_name         Override the default, "Mamboberry DAC+ HiFi",
+                                dai stream name.
 
 
 Name:   mcp23017
@@ -1077,6 +1167,46 @@ Params: overclock_50            Clock (in MHz) to use when the MMC framework
                                 (default 1)
 
         debug                   Enable debug output (default off)
+
+
+Name:   simple-bclk-64fs
+Info:   Use a "fixed" 64fs bclk_ratio for 2 channel, 32/24/16 bit audio.
+Load:   dtoverlay=simple-bclk-64fs
+Params: <None>
+
+
+Name:   simple-bclk-int-div-40-80
+Info:   Specify a bclk_integer_divisor preference for multiples of 8k rates
+        Use bclk_ratio=40 for S16_LE and bclk_ratio=80 for S24_LE and S32_LE
+        formats when the media sample rate is a multiple of 8000kHz and less
+        than 192kHz, which allows the use of the OSC with integer divider
+        rather than PLL with fractional (MASH) divider.
+Load:   dtoverlay=simple-bclk-int-div-40-80
+Params: <None>
+
+
+Name:   simple-bclk-int-div-50-100
+Info:   Specify a bclk_integer_divisor preference for multiples of 8k rates
+        Use bclk_ratio=50 for S16_LE and bclk_ratio=100 for S24_LE and S32_LE
+        formats when the media sample rate is a multiple of 8000kHz and less
+        than 192kHz, which allows the use of the OSC with integer divider
+        rather than PLL with fractional (MASH) divider.
+Load:   dtoverlay=simple-bclk-int-div-50-100
+Params: <None>
+
+
+Name:   simple-es9023-audio
+Info:   Configures a generic board or HAT using ESS Sabre ES9023 DAC
+Load:   dtoverlay=simple-es9023-audio,<param>,<param>=<val>
+Params: 384k                    Instructs the es9023 codec driver to support
+                                352k8 and 384k sample rates.
+        card_name               Override the default, "es9023", card name.
+
+
+Name:   simple-pcm5102a-audio
+Info:   Configures a generic board or HAT using the TI PCM510x DAC
+Load:   dtoverlay=simple-pcm5102a-audio,<param>=<val>
+Params: card_name               Override the default, "pcm5102a", card name.
 
 
 Name:   smi
