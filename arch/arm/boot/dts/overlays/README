@@ -303,8 +303,7 @@ Params: swap_lr                 Reverse the channel allocation, which will also
 
 
 Name:   bmp085_i2c-sensor
-Info:   Configures the BMP085/BMP180 digital barometric pressure and temperature
-        sensors from Bosch Sensortec
+Info:   This overlay is now deprecated - see i2c-sensor
 Load:   dtoverlay=bmp085_i2c-sensor
 Params: <None>
 
@@ -364,7 +363,7 @@ Params: dr_mode                 Dual role mode: "host", "peripheral" or "otg"
 
 
 Name:   enc28j60
-Info:   Overlay for the Microchip ENC28J60 Ethernet Controller (SPI)
+Info:   Overlay for the Microchip ENC28J60 Ethernet Controller on SPI0
 Load:   dtoverlay=enc28j60,<param>=<val>
 Params: int_pin                 GPIO used for INT (default 25)
 
@@ -387,6 +386,13 @@ Params: 384k                    Instructs the es9023 codec driver to support
         dai_name                Override the default, "ES9023 DAC" dai name.
         dai_stream_name         Override the default, "ES9023 DAC HiFi",
                                 dai stream name.
+
+Name:   enc28j60-spi2
+Info:   Overlay for the Microchip ENC28J60 Ethernet Controller on SPI2
+Load:   dtoverlay=enc28j60-spi2,<param>=<val>
+Params: int_pin                 GPIO used for INT (default 39)
+
+        speed                   SPI bus speed (default 12000000)
 
 
 Name:   gpio-ir
@@ -603,6 +609,15 @@ Params: abx80x                  Select one of the ABx80x family:
 
         wakeup-source           Specify that the RTC can be used as a wakeup
                                 source
+
+
+Name:   i2c-sensor
+Info:   Adds support for a number of I2C barometric pressure and temperature
+        sensors on i2c_arm
+Load:   dtoverlay=i2c-sensor,<param>=<val>
+Params: bmp085                  Select the Bosch sensortronic BMP085
+
+        bmp280                  Select the Bosch sensortronic BMP280
 
 
 Name:   i2c0-bcm2708
